@@ -23,10 +23,16 @@ public class KeywordsDetector {
     public static void detectAndPrint(String[] sentences, String[] keywords) {
         String sentence = "";
         String key = "";
+
+        //going over all the sentences
         for(int i = 0; i < sentences.length; i++) {
             sentence = MyString.lowerCase(sentences[i]);
+            //going over all the keywords, and checking if the current sentence contains the current keyword
             for(int j = 0; j < keywords.length; j++) {
                 key = MyString.lowerCase(keywords[j]);
+                
+                //if we find a match (the sentence contains the keyword) - printing the sentence 
+                // and exiting the loop of the keywords and thus advancing to the next sentence
                 if(MyString.contains(sentence , key)) {
                     System.out.println(sentences[i]);
                     break;

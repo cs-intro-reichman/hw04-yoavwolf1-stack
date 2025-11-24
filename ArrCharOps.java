@@ -43,7 +43,8 @@ public class ArrCharOps {
      *  returns true; Otherwise returns false.
      */
     public static boolean equals(char[] arr1, char[] arr2) {
-        if(arr1.length != arr2.length) return false;
+        if(arr1.length != arr2.length) return false; //checks for matching lengths
+        //checks if every 2 corresponding chars are equal
         for(int i = 0; i < arr1.length; i++)
             if(arr1[i] != arr2[i]) return false;
 
@@ -63,7 +64,7 @@ public class ArrCharOps {
     /** Same as indexOf(char[], char), but starts the search in the given index.
      */
     public static int indexOf(char[] arr, char ch, int fromIndex) {
-        for(int i = fromIndex; i < arr.length; i++)
+        for(int i = fromIndex; i < arr.length; i++) //starting from the given input "fromIndex"
             if(arr[i] == ch) return i;
             
         return -1;
@@ -73,7 +74,7 @@ public class ArrCharOps {
      *  If no such character is found, returns -1.
      */
     public static int lastIndexOf(char[] arr, char ch) {
-        for(int i = arr.length - 1; i >= 0; i--)
+        for(int i = arr.length - 1; i >= 0; i--) //goes over the array backwards
             if(arr[i] == ch) return i;
             
         return -1;
@@ -82,9 +83,11 @@ public class ArrCharOps {
     /* Returns an array which is the concatanation of the two given arrays.
     */
     public static char[] concat(char[] arr1, char[] arr2) {
-        char[] union = new char[arr1.length + arr2.length];
+        char[] union = new char[arr1.length + arr2.length]; //an array of the combined size of the 2 input arrays
+        //adding the first array to the new one
         for(int i = 0; i < arr1.length; i++)
             union[i] = arr1[i];
+        //adding the second array to the new one
         for(int i = 0; i < arr2.length; i++)
             union[i + arr1.length] = arr2[i];
         
@@ -114,6 +117,7 @@ public class ArrCharOps {
     public static long hashCode(char[] arr) {
         int hash = 0;
         int curr;
+        //calculating the "hash value" for each char and summing all of them up
         for(int i = 0; i < arr.length; i++) {
             curr = (int) (arr[i] * Math.pow(7, arr.length - i - 1));
             hash += curr;
@@ -147,15 +151,18 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
-        if(str1.length() == 0 || str2.length() == 0) return -2;
+        if(str1.length() == 0 || str2.length() == 0) return -2; //if there is an input missing
         
+        //going over the arrays and checking if any single char is greater or lesser than its corresponding char
         for(int i = 0; i < str1.length() && i < str2.length(); i++) {
             if(str1.charAt(i) < str2.charAt(i)) return -1;
             if(str1.charAt(i) > str2.charAt(i)) return 1;
         }
+        //if we reached the end of one array withount detecting different chars - then the longer array is the greater
         if(str1.length() < str2.length()) return -1;
         if(str1.length() > str2.length()) return 1;
 
+        //if we reached thus far - we survived all the "difference" tests and the 2 arrays are completely equal
         return 0;
     }
 }
